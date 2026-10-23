@@ -1,13 +1,17 @@
 # Tool Learning Log
 
-## Tool: **X**
+## Tool: **Kaboom**
 
-## Project: **X**
+## Project: **Platform Game**
 
 ---
 
-### X/X/XX:
+## Learning Log 1 
+### 10/23/26:
+[Kaboom FCC](https://www.freecodecamp.org/news/javascript-gamedev-with-kaboomjs/)
 * Text
+
+
 
 ### X/X/XX:
 * Text
