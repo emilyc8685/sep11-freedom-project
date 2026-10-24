@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Kaboom Tinkering </title>
+</head>
+<body>
+        <script type="module">
+
+    // import kaboom.js
+    import kaboom from "https://unpkg.com/kaboom@3000.0.1/dist/kaboom.mjs";
+
+    // adds blank canvas 
+    kaboom();
+
+    // add text
+    add([
+        text("hey!"),
+        pos(120, 80),
+    ]);
+
+    add ([
+        pos(100,150),
+        rect(80,50),
+        color(255,0,0),
+        area(),
+    ])
+
+    addLevel ([
+        '        ',
+        '        ',
+        '    @   ',
+        '        ',
+        'xxxxxxxx',
+    ], {
+         tileWidth: 40,
+         tileHeight: 40,
+         tiles: {
+        'x' : () => [
+            rect(80,50),
+        color(255,0,0),
+        area (),
+        ]
+         }
+    })
+
+   
+</script>
+</body>
+</html>
