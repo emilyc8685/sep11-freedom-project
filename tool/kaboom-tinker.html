@@ -9,6 +9,7 @@
     // import kaboom.js
     import kaboom from "https://unpkg.com/kaboom@3000.0.1/dist/kaboom.mjs";
 
+
     // adds blank canvas 
     kaboom();
 
@@ -39,12 +40,42 @@
          tileHeight: 40,
          tiles: {
         'x' : () => [
-            rect(80,50),
+        rect(80,50),
         color(0, 128, 0),
-        area (),
+        area (), 
+        body({ isStatic: true }),
         ]
          }
     })
+
+    loadSprite("bean", "https://kaboomjs.com/sprites/bean.png")
+
+const player = add([
+    sprite("bean"),
+    pos(80, 40),
+    area(),
+    body(),
+])
+
+setGravity(1600);
+
+onKeyPress("space", () => {
+    player.jump()
+})
+
+const SPEED = 200;
+
+onKeyDown("left", () => {
+    player.move(-SPEED, 0);
+})
+
+onKeyDown("right", () => {
+    player.move(SPEED, 0);
+})
+
+
+ 
+
 
    
 </script>
