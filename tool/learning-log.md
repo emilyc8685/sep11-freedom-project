@@ -9,7 +9,8 @@
 ## Learning Log 1 
 ### 10/23/26:
 * Setup Kaboom with their website: [Kaboom - Setup](https://kaboomjs.com/doc/setup) 
-* I tinkered with Kaboom by watching this video: []()
+* I tinkered with Kaboom by watching this video: [Easy Kaboom Game Developement]( https://m.youtube.com/watch?v=4OaHB0JbJDI&start=106
+)
    * After watching 15 minutes of the video I learned the basics of kaboom.js:
    * Draw a map with quotation marks, create a ground with `x` and define it.
    * `body()` adds gravity, `solid() stops sprite from falling`
