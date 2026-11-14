@@ -22,6 +22,8 @@ onKeyPress("space", () => {
     player.jump()
 })
 ```
+## Sources 
+I've been tinkering with Kaboom by following YouTube videos: [Easy Kaboom Game Developement]( https://m.youtube.com/watch?v=4OaHB0JbJDI&start=106) and the [Kaboom website](https://kaboomjs.com/). Although another tool I considered was [Phaser](https://phaser.io/) because its great for beginners and an HTML5 game framework that helps users create games quickly.
 
 ## EDP
 The step i'm currently at is planning my project. The next step is creating a prototype. 
