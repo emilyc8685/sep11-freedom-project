@@ -7,17 +7,12 @@
         <script type="module">
 
     // import kaboom.js
-    import kaboom from "https://unpkg.com/kaboom@3000.0.1/dist/kaboom.mjs";
-
+    import kaboom from "https://unpkg.com/kaboom@3000.0.1/dist/kaboom.mjs";     
 
     // adds blank canvas 
     kaboom();
 
     // add text
-    add([
-        text("hey!"),
-        pos(120, 80),
-    ]);
 
     add ([
         pos(100,150),
@@ -26,14 +21,20 @@
         area(),
     ])
 
+    loadSprite("coin", "https://kaboomjs.com/sprites/coin.png")
+    loadSprite("bean", "https://kaboomjs.com/sprites/bean.png")
+    loadSprite("key", "https://kaboomjs.com/sprites/key.png")
+    loadSprite("door", "https://kaboomjs.com/sprites/door.png")
+
+
     addLevel ([
         '        ',
         '        ',
         '        ',
         '        ',
         '        ',
-        '    @   ',
         '        ',
+        '      @ @ @ $ -',
         'xxxxxxxxxxxxxxxxxxxxx',
     ], {
          tileWidth: 80,
@@ -44,11 +45,28 @@
         color(0, 128, 0),
         area (), 
         body({ isStatic: true }),
-        ]
-         }
-    })
+        ],
 
-    loadSprite("bean", "https://kaboomjs.com/sprites/bean.png")
+        '@': () => [
+            sprite("coin"),
+            area(),
+            "coin",
+        ],
+
+        "$": () => [
+				sprite("key"),
+				area(),
+				"key",
+         ],
+
+         "-": () => [
+            sprite("door"),
+            area(),
+            "door",
+         ],
+    }
+})
+
 
 const player = add([
     sprite("bean"),
@@ -73,9 +91,25 @@ onKeyDown("right", () => {
     player.move(SPEED, 0);
 })
 
+player.onCollide("coin", (coin) => {
+		destroy(coin)
+}) 
 
- 
+let hasKey = false
 
+player.onCollide("key", (key) => {
+    destroy(key)
+    hasKey = true
+})
+
+player.onCollide("door", (door) => {
+    if (hasKey === true) {
+     const woohoo = add([
+        text("Door Unlocked!!"),
+        pos(120, 80),
+     ])
+    }
+})
 
    
 </script>
