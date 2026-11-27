@@ -9,23 +9,19 @@
     // import kaboom.js
     import kaboom from "https://unpkg.com/kaboom@3000.0.1/dist/kaboom.mjs";     
 
-    // adds blank canvas 
     kaboom();
 
-    // add text
-
-    add ([
-        pos(100,150),
-        rect(80,50),
-        color(255,0,0),
-        area(),
-    ])
+    // sprites:
 
     loadSprite("coin", "https://kaboomjs.com/sprites/coin.png")
     loadSprite("bean", "https://kaboomjs.com/sprites/bean.png")
     loadSprite("key", "https://kaboomjs.com/sprites/key.png")
     loadSprite("door", "https://kaboomjs.com/sprites/door.png")
+    loadSprite("ghosty", "https://kaboomjs.com/sprites/ghosty.png")
+    loadSprite("grass", "https://kaboomjs.com/sprites/grass.png")
 
+    // code:
+        // levels
 
     addLevel ([
         '        ',
@@ -34,17 +30,18 @@
         '        ',
         '        ',
         '        ',
-        '      @ @ @ $ -',
-        'xxxxxxxxxxxxxxxxxxxxx',
+        '    a  @ @ @ $ -',
+        '        ',
+        'xxxxxxxxxxxxxxxxx',
     ], {
          tileWidth: 80,
          tileHeight: 40,
          tiles: {
         'x' : () => [
-        rect(80,50),
-        color(0, 128, 0),
-        area (), 
-        body({ isStatic: true }),
+        sprite("grass"),
+		area(),
+		body({ isStatic: true }),
+		
         ],
 
         '@': () => [
@@ -64,9 +61,17 @@
             area(),
             "door",
          ],
+
+         "a": () => [
+            sprite("ghosty"),
+            area(), 
+            "ghosty",
+
+         ],
     }
 })
 
+    // game code
 
 const player = add([
     sprite("bean"),
@@ -79,37 +84,62 @@ setGravity(1600);
 
 onKeyPress("space", () => {
     player.jump()
-})
+});
 
 const SPEED = 200;
 
 onKeyDown("left", () => {
     player.move(-SPEED, 0);
-})
+});
 
 onKeyDown("right", () => {
     player.move(SPEED, 0);
-})
+});
 
 player.onCollide("coin", (coin) => {
 		destroy(coin)
-}) 
+});
 
-let hasKey = false
+let hasKey = false;
 
 player.onCollide("key", (key) => {
     destroy(key)
     hasKey = true
-})
+});
 
 player.onCollide("door", (door) => {
     if (hasKey === true) {
      const woohoo = add([
         text("Door Unlocked!!"),
-        pos(120, 80),
+        pos(990, 150),
      ])
     }
-})
+});
+
+player.onUpdate(() => {
+    const touchingGhost = get("ghosty", { recursive: true}).some((g) => player.isColliding(g))
+
+if(touchingGhost){
+    if(get("ghostMsg").length === 0){
+     add ([
+        pos(0,490),
+        rect(10000,100),
+        color(0,0,0),
+        area(),
+        "ghostMsg",
+    ]);
+     add ([
+        text("Hey! You should get that key!"),
+        pos(50, 520),
+        "ghostMsg"
+
+     ]);
+    }
+ } else {
+        destroyAll("ghostMsg");
+    }
+});
+
 
    
 </script>

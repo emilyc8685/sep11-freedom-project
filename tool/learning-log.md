@@ -65,6 +65,14 @@ onKeyDown("right", () => {
 ```
 * Will allow the message "Door Unlocked!!" to show up when the player has a key and collides with the door
 
+## Learning Log 4
+### 11/23/26:
+* I tinkered with Kaboom by adding a character and making it interactive:
+  * I did this by adding a ghost sprite by defining variable `a` as the ghost
+  * Then i added `get("ghosty", { recursive: true})` so the computer looks through all of my code and looks for the `"ghostly"` tag so `.some((g) => player.isColliding(g))` finds the `"ghostly"` tag and calls it `g` so the computer knows if the player is colliding with the ghost is true or false
+  * Then I added `if(get("ghostMsg").length === 0)` where `.length` counts how many items with the `"ghostMsg"` tag (0: no items, 2: the text box) and `=== 0` checks if the count is 0 so the text box doesn't spawn multiple times (`.onUpdate` is a loop that runs automatically 60 times per second)
+  * Finally i added `else {destroyAll("ghostMsg"); }` so when the player isn't colliding with the ghost the text disappears
+
 
 
 <!-- 
