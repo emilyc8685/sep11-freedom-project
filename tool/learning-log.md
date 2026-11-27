@@ -49,10 +49,10 @@ onKeyDown("right", () => {
     * By adding `"coin"` the computer knows something will happen when the player collides with a coin.
     * Finally by adding `destroy(coin)` the computer knows when the player collides with a coin the coin will get destroyed. 
   
-  * I also tinkered with Kaboom by adding a key and door and being able to unlock the door
-    * To do this I added `'$'` and defined it as a key and `'-'` and defined it as a door
-    * I added ` hasKey = true` to the key so when the player collects a key the compyer knows the player has a key
-    * This code:
+* I also tinkered with Kaboom by adding a key and door and being able to unlock the door
+  * To do this I added `'$'` and defined it as a key and `'-'` and defined it as a door
+  * I added ` hasKey = true` to the key so when the player collects a key the computer knows the player has a key
+  * This code:
 ```js
     player.onCollide("door", (door) => {
     if (hasKey === true) {
